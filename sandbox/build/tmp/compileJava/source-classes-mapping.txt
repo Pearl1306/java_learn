@@ -1,2 +1,2 @@
-MyFirstProgram.java
- MyFirstProgram
+ru/stqa/learn/sandbox/MyFirstProgram.java
+ ru.stqa.learn.sandbox.MyFirstProgram
