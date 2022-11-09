@@ -13,6 +13,7 @@ public class PointTests {
 
 
     }
+    @Test
     public void testDistance1(){
         Point p1 = new Point(7,10);
         Point p2 = new Point(10,14);
