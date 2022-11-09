@@ -1,8 +1,0 @@
-ru/stqa/learn/sandbox/Rectangle.java
- ru.stqa.learn.sandbox.Rectangle
-ru/stqa/learn/sandbox/Square.java
- ru.stqa.learn.sandbox.Square
-ru/stqa/learn/sandbox/Point.java
- ru.stqa.learn.sandbox.Point
-ru/stqa/learn/sandbox/MyFirstProgram.java
- ru.stqa.learn.sandbox.MyFirstProgram

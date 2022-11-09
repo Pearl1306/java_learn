@@ -1,2 +1,0 @@
-ru/stqa/learn/sandbox/SquareTests.java
- ru.stqa.learn.sandbox.SquareTests
