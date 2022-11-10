@@ -1,4 +1,0 @@
-ru/stqa/learn/sandbox/PointTests.java
- ru.stqa.learn.sandbox.PointTests
-ru/stqa/learn/sandbox/SquareTests.java
- ru.stqa.learn.sandbox.SquareTests
