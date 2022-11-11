@@ -45,6 +45,9 @@ public class ApplicationManager {
             return false;
         }
     }
+    public void goToHomePage() {
+        wd.findElement(By.linkText("home")).click();
+    }
 
     public void returnToHomePage() {
       wd.findElement(By.linkText("home page")).click();

@@ -1,6 +1,6 @@
 package ru.stqa.learn.addressbook.tests;
 
-import org.testng.annotations.*;
+import org.testng.annotations.Test;
 
 
 public class ContactDeletionTests extends TestBase {
@@ -9,6 +9,7 @@ public class ContactDeletionTests extends TestBase {
     @Test
     public void testContactDeletion() throws Exception {
 
+        app.goToHomePage();
         app.selectContact();
         app.deleteContact();
         app.acceptDeletionContact();
