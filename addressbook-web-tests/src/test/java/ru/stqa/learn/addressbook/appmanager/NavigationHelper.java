@@ -13,4 +13,8 @@ import org.openqa.selenium.WebDriver;
     public void goToGroupPage() {
         wd.findElement(By.linkText("groups")).click();
     }
+     public void goToHomePage() {
+
+        wd.findElement(By.linkText("home")).click();
+     }
 }
