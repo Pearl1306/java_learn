@@ -10,9 +10,9 @@ import java.util.concurrent.TimeUnit;
 public class ApplicationManager {
     public WebDriver wd;
 
-    private ContactHelper contactHelper ;
+    private ContactHelper contactHelper;
     private NavigationHelper navigationHelper;
-    private GroupHelper groupHelper ;
+    private GroupHelper groupHelper;
     private SessionHelper sessionHelper;
 
     public void init() {
@@ -26,7 +26,6 @@ public class ApplicationManager {
         sessionHelper = new SessionHelper(wd);
         sessionHelper.login("admin", "secret");
     }
-
 
 
     public void logout() {
