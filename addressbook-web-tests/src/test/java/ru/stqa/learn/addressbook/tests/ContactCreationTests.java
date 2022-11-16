@@ -22,7 +22,7 @@ public class ContactCreationTests extends TestBase {
         app.getContactHelper().initContactCreation();
         app.getContactHelper().createContact(new ContactData
                 ("John","Doe","333 Spring St","1112223344",
-                        "qwerty@gmail.com","test1"));
+                        "qwerty@gmail.com"));
 
         int after =app.getContactHelper().getContactCount();
         Assert.assertEquals(before,after-1);

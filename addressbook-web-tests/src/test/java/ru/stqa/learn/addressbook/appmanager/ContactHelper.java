@@ -27,11 +27,12 @@ public class ContactHelper extends HelperBase {
         type(By.name("home"), contactData.getHomephone());
         type(By.name("email"), contactData.getEmail());
         if(creation){
-            new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+            new Select(wd.findElement(By.name("new_group"))).selectByIndex(1);
 
         }else{
             Assert.assertFalse(isElementPresent(By.name("new_group")));
         }
+
 
     }
 
@@ -48,8 +49,9 @@ public class ContactHelper extends HelperBase {
         click(By.xpath("//input[@value='Delete']"));
     }
 
-    public void selectContact() {
-        click(By.xpath("//td/input"));
+    public void selectContact(int index) {
+        wd.findElements(By.xpath("//td/input")).get(index).click();
+
     }
 
 
@@ -70,6 +72,8 @@ public class ContactHelper extends HelperBase {
     public void createContact(ContactData contact) {
         initContactCreation();
         fillContactForm(contact,true);
+        //selectGroup(before-1);
+
         submitContactCreation();
         returnToHomePage();
     }

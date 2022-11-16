@@ -14,13 +14,13 @@ public class ContactModificationTests extends TestBase{
         if(!app.getContactHelper().isThereAContact()){
             app.getContactHelper().fillContactForm(new ContactData("John", "Doe",
                     "3 Duncroft ,Silver Spring MD", "2223334556",
-                    "qwerty1@gmail.com","test1"),true);
+                    "qwerty1@gmail.com"),true);
         }
-        app.getContactHelper().selectContact();
+        app.getContactHelper().selectContact(before-1);
         app.getContactHelper().initContactModification();
         app.getContactHelper().fillContactForm(new ContactData
                 ("John","Doe","333 Spring St","1112223344",
-                        "qwerty@gmail.com",null),false);
+                        "qwerty@gmail.com"),false);
         app.getContactHelper().submitContactModification();
         app.getContactHelper().returnToHomePage();
         int after =app.getContactHelper().getContactCount();
