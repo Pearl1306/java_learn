@@ -1,6 +1,6 @@
 .gradle
  build/
- out/
+ 
 
 # Ignore Gradle GUI config
 gradle-app.setting
@@ -13,3 +13,24 @@ gradle-app.setting
 
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
 # gradle/wrapper/gradle-wrapper.properties
+addressbook-web-tests/out/test/classes/ru/stqa/learn/addressbook/appmanager/ApplicationManager.class
+addressbook-web-tests/out/test/classes/ru/stqa/learn/addressbook/appmanager/GroupHelper.class
+addressbook-web-tests/out/test/classes/ru/stqa/learn/addressbook/appmanager/HelperBase.class
+addressbook-web-tests/out/test/classes/ru/stqa/learn/addressbook/appmanager/SessionHelper.class
+addressbook-web-tests/out/test/classes/ru/stqa/learn/addressbook/model/ContactData.class
+addressbook-web-tests/out/test/classes/ru/stqa/learn/addressbook/appmanager/ContactHelper.class
+addressbook-web-tests/out/test/classes/ru/stqa/learn/addressbook/appmanager/NavigationHelper.class
+addressbook-web-tests/out/test/classes/ru/stqa/learn/addressbook/model/GroupData.class
+addressbook-web-tests/out/test/classes/ru/stqa/learn/addressbook/tests/ContactDeletionTests.class
+addressbook-web-tests/out/test/classes/ru/stqa/learn/addressbook/tests/ContactCreationTests.class
+addressbook-web-tests/out/test/classes/ru/stqa/learn/addressbook/tests/GroupCreationTests.class
+addressbook-web-tests/out/test/classes/ru/stqa/learn/addressbook/tests/ContactModificationTests.class
+addressbook-web-tests/out/test/classes/ru/stqa/learn/addressbook/tests/GroupDeletionTests.class
+addressbook-web-tests/out/test/classes/ru/stqa/learn/addressbook/tests/GroupModificationTests.class
+addressbook-web-tests/out/test/classes/ru/stqa/learn/addressbook/tests/TestBase.class
+sandbox/out/production/classes/ru/stqa/learn/sandbox/Point.class
+sandbox/out/production/classes/ru/stqa/learn/sandbox/Rectangle.class
+sandbox/out/production/classes/ru/stqa/learn/sandbox/Square.class
+sandbox/out/production/classes/ru/stqa/learn/sandbox/MyFirstProgram.class
+sandbox/out/test/classes/ru/stqa/learn/sandbox/PointTests.class
+sandbox/out/test/classes/ru/stqa/learn/sandbox/SquareTests.class
