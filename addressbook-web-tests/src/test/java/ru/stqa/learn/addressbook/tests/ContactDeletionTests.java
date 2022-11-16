@@ -12,7 +12,7 @@ public class ContactDeletionTests extends TestBase {
 
         app.getNavigationHelper().goToHomePage();
         if(!app.getContactHelper().isThereAContact()){
-            app.getContactHelper().createContact(new ContactData("John", "Doe",
+            app.getContactHelper().fillContactForm(new ContactData("John", "Doe",
                     "3 Duncroft ,Silver Spring MD", "2223334556",
                     "qwerty1@gmail.com","test1"),true);
         }
