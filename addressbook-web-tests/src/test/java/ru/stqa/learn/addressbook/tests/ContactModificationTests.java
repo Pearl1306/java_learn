@@ -1,5 +1,6 @@
 package ru.stqa.learn.addressbook.tests;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stqa.learn.addressbook.model.ContactData;
 import ru.stqa.learn.addressbook.model.GroupData;
@@ -8,6 +9,8 @@ public class ContactModificationTests extends TestBase{
     @Test
     public void testContactModification(){
         app.getNavigationHelper().goToHomePage();
+        int before =app.getContactHelper().getContactCount();
+
         if(!app.getContactHelper().isThereAContact()){
             app.getContactHelper().fillContactForm(new ContactData("John", "Doe",
                     "3 Duncroft ,Silver Spring MD", "2223334556",
@@ -20,5 +23,9 @@ public class ContactModificationTests extends TestBase{
                         "qwerty@gmail.com",null),false);
         app.getContactHelper().submitContactModification();
         app.getContactHelper().returnToHomePage();
+        int after =app.getContactHelper().getContactCount();
+        Assert.assertEquals(before,after);
+
+
     }
 }
