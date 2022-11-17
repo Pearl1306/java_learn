@@ -4,27 +4,31 @@ import java.util.Objects;
 
 //object
 public class GroupData {
-    private final String id;
+    private  int id;
     private final String header;
     private final String footer;
     private final String name;
 
     //constructor
-    public GroupData(String id,String header, String footer, String name) {
+    public GroupData(int id,String header, String footer, String name) {
         this.id = id;
         this.header = header;
         this.footer = footer;
         this.name = name;
     }
     public GroupData(String header, String footer, String name) {
-        this.id = null;
+        this.id = 0;
         this.header = header;
         this.footer = footer;
         this.name = name;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getHeader() {
@@ -46,13 +50,13 @@ public class GroupData {
 
         GroupData groupData = (GroupData) o;
 
-        if (!Objects.equals(id, groupData.id)) return false;
+        if (id != groupData.id) return false;
         return Objects.equals(name, groupData.name);
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
+        int result = id;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         return result;
     }
