@@ -5,6 +5,8 @@ import org.testng.annotations.*;
 import ru.stqa.learn.addressbook.model.ContactData;
 import ru.stqa.learn.addressbook.model.GroupData;
 
+import java.util.List;
+
 
 public class ContactCreationTests extends TestBase {
 
@@ -16,16 +18,15 @@ public class ContactCreationTests extends TestBase {
             app.getGroupHelper().creatGroup(new GroupData(null, null, "test1"));
         }
         app.getNavigationHelper().goToHomePage();
-        int before =app.getContactHelper().getContactCount();
-
+        List<ContactData> before = app.getContactHelper().getContactList();
 
         app.getContactHelper().initContactCreation();
         app.getContactHelper().createContact(new ContactData
                 ("John","Doe","333 Spring St","1112223344",
                         "qwerty@gmail.com"));
 
-        int after =app.getContactHelper().getContactCount();
-        Assert.assertEquals(before,after-1);
+        List<ContactData> after = app.getContactHelper().getContactList();
+        Assert.assertEquals(before.size(),after.size()-1);
 
         app.logout();
     }
