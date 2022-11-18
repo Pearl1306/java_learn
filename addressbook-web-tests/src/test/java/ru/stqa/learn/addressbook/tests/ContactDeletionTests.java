@@ -1,5 +1,6 @@
 package ru.stqa.learn.addressbook.tests;
 
+import jdk.jfr.Enabled;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stqa.learn.addressbook.model.ContactData;
@@ -22,11 +23,11 @@ public class ContactDeletionTests extends TestBase {
         }
         List<ContactData> before = app.getContactHelper().getContactList();
         app.getContactHelper().selectContact(before.size()-1);
-        app.getContactHelper().deleteContact();
+          app.getContactHelper().deleteContact();
         app.getContactHelper().acceptDeletionContact();
         List<ContactData> after = app.getContactHelper().getContactList();
         Assert.assertEquals(before.size(),after.size()+1);
-
+        app.logout();
         before.remove(before.size()-1);
         Assert.assertEquals(before,after);
 

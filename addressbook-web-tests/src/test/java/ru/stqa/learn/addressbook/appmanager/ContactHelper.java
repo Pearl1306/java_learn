@@ -10,6 +10,7 @@ import ru.stqa.learn.addressbook.model.GroupData;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class ContactHelper extends HelperBase {
 
@@ -46,14 +47,17 @@ public class ContactHelper extends HelperBase {
     }
 
     public void acceptDeletionContact() {
+
         alertAccept();
+        wd.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+
     }
 
 
     public void deleteContact() {
 
         click(By.xpath("//input[@value='Delete']"));
-        wd.findElement(By.cssSelector("div.msgbox"));
+        //wd.findElement(By.cssSelector("div.msgbox"));
     }
 
     public void selectContact(int index) {
