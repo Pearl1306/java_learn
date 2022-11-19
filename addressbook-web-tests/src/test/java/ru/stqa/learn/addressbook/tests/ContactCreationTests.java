@@ -1,6 +1,7 @@
 package ru.stqa.learn.addressbook.tests;
 
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.learn.addressbook.model.ContactData;
 import ru.stqa.learn.addressbook.model.GroupData;
@@ -11,12 +12,17 @@ import java.util.List;
 
 public class ContactCreationTests extends TestBase {
 
-    @Test
-    public void testContactCreation() throws Exception {
+    @BeforeMethod
+           public void ensurePrecondition(){
         app.getNavigationHelper().goToGroupPage();
         if (!app.getGroupHelper().isThereAgroup()) {
             app.getGroupHelper().creatGroup(new GroupData(null, null, "test1"));
         }
+    }
+
+    @Test
+    public void testContactCreation() throws Exception {
+
         app.getNavigationHelper().goToHomePage();
         List<ContactData> before = app.getContactHelper().getContactList();
         ContactData contact = new ContactData

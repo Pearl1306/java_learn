@@ -1,7 +1,7 @@
 package ru.stqa.learn.addressbook.tests;
 
-import jdk.jfr.Enabled;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.learn.addressbook.model.ContactData;
 import ru.stqa.learn.addressbook.model.GroupData;
@@ -10,10 +10,8 @@ import java.util.List;
 
 
 public class ContactDeletionTests extends TestBase {
-
-
-    @Test
-    public void testContactDeletion() throws Exception {
+    @BeforeMethod
+    public void ensurePreconditions(){
         app.getNavigationHelper().goToGroupPage();
         if (!app.getGroupHelper().isThereAgroup()) {
             app.getGroupHelper().creatGroup(new GroupData(null, null, "test1"));
@@ -25,18 +23,18 @@ public class ContactDeletionTests extends TestBase {
                     "3 Duncroft ,Silver Spring MD", "2223334556",
                     "qwerty1@gmail.com"),true);
         }
-        List<ContactData> before = app.getContactHelper().getContactList();
-        app.getContactHelper().selectContact(before.size()-1);
-          app.getContactHelper().deleteContact();
-        app.getContactHelper().acceptDeletionContact();
-        List<ContactData> after = app.getContactHelper().getContactList();
-        Assert.assertEquals(before.size(),after.size()+1);
-        before.remove(before.size()-1);
-        Assert.assertEquals(before,after);
-
-
-
     }
 
+
+    @Test
+    public void testContactDeletion() throws Exception {
+        List<ContactData> before = app.getContactHelper().getContactList();
+        int index = before.size() - 1;
+        app.getContactHelper().deletionContact(index);
+        List<ContactData> after = app.getContactHelper().getContactList();
+        Assert.assertEquals(before.size() - 1, after.size());
+        before.remove(index);
+        Assert.assertEquals(before, after);
+    }
 
 }

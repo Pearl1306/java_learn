@@ -37,29 +37,24 @@ public class ContactHelper extends HelperBase {
         } else {
             Assert.assertFalse(isElementPresent(By.name("new_group")));
         }
-
     }
     public void initContactCreation() {
         click(By.linkText("add new"));
     }
 
     public void acceptDeletionContact() {
-
         alertAccept();
         wd.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-
     }
     public void deleteContact() {
 
         click(By.xpath("//input[@value='Delete']"));
         //wd.findElement(By.cssSelector("div.msgbox"));
     }
-
     public void selectContact(int index) {
         wd.findElements(By.xpath("//td/input")).get(index).click();
 
     }
-
     public void initContactModification(int index) {
         wd.findElements(By.xpath("//img[@alt='Edit']")).get(index).click();
     }
@@ -68,17 +63,26 @@ public class ContactHelper extends HelperBase {
         click(By.xpath("//div[@id='content']/form/input[22]"));
 
     }
-
     public boolean isThereAContact() {
         return isElementPresent(By.xpath("//td/input"));
 
     }
-
     public void createContact(ContactData contact) {
         initContactCreation();
         fillContactForm(contact, true);
         submitContactCreation();
         returnToHomePage();
+    }
+    public void modifyContact(List<ContactData> before, ContactData contact) {
+        initContactModification(before.size()-1);
+        fillContactForm(contact,false);
+        submitContactModification();
+        returnToHomePage();
+    }
+    public void deletionContact(int index) {
+        selectContact(index);
+        deleteContact();
+        acceptDeletionContact();
     }
 
     public int getContactCount() {
