@@ -34,14 +34,11 @@ public class ContactHelper extends HelperBase {
         type(By.name("email"), contactData.getEmail());
         if (creation) {
             new Select(wd.findElement(By.name("new_group"))).selectByIndex(1);
-
         } else {
             Assert.assertFalse(isElementPresent(By.name("new_group")));
         }
 
-
     }
-
     public void initContactCreation() {
         click(By.linkText("add new"));
     }
@@ -52,8 +49,6 @@ public class ContactHelper extends HelperBase {
         wd.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 
     }
-
-
     public void deleteContact() {
 
         click(By.xpath("//input[@value='Delete']"));
@@ -65,8 +60,8 @@ public class ContactHelper extends HelperBase {
 
     }
 
-    public void initContactModification() {
-        click(By.xpath("//img[@alt='Edit']"));
+    public void initContactModification(int index) {
+        wd.findElements(By.xpath("//img[@alt='Edit']")).get(index).click();
     }
 
     public void submitContactModification() {
