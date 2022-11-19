@@ -43,7 +43,7 @@ public class ApplicationManager {
 
     public void logout() {
         wd.findElement(By.linkText("Logout")).click();
-        wd.findElement(By.name("user"));
+        //wd.findElement(By.name("user"));
     }
 
     public void stop() {

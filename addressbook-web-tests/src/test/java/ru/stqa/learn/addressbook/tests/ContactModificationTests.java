@@ -7,7 +7,7 @@ import java.util.Comparator;
 import java.util.List;
 
 public class ContactModificationTests extends TestBase{
-    @Test(enabled = false)
+    @Test
     public void testContactModification(){
         app.getNavigationHelper().goToHomePage();
 
