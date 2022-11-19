@@ -4,6 +4,7 @@ import jdk.jfr.Enabled;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stqa.learn.addressbook.model.ContactData;
+import ru.stqa.learn.addressbook.model.GroupData;
 
 import java.util.List;
 
@@ -13,7 +14,10 @@ public class ContactDeletionTests extends TestBase {
 
     @Test
     public void testContactDeletion() throws Exception {
-
+        app.getNavigationHelper().goToGroupPage();
+        if (!app.getGroupHelper().isThereAgroup()) {
+            app.getGroupHelper().creatGroup(new GroupData(null, null, "test1"));
+        }
         app.getNavigationHelper().goToHomePage();
         if(!app.getContactHelper().isThereAContact()){
             app.getContactHelper().initContactCreation();

@@ -3,14 +3,19 @@ package ru.stqa.learn.addressbook.tests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stqa.learn.addressbook.model.ContactData;
+import ru.stqa.learn.addressbook.model.GroupData;
+
 import java.util.Comparator;
 import java.util.List;
 
 public class ContactModificationTests extends TestBase{
     @Test
     public void testContactModification(){
+        app.getNavigationHelper().goToGroupPage();
+        if (!app.getGroupHelper().isThereAgroup()) {
+            app.getGroupHelper().creatGroup(new GroupData(null, null, "test1"));
+        }
         app.getNavigationHelper().goToHomePage();
-
         if(!app.getContactHelper().isThereAContact()){
             app.getContactHelper().initContactCreation();
             app.getContactHelper().fillContactForm(new ContactData("John", "Doe",
