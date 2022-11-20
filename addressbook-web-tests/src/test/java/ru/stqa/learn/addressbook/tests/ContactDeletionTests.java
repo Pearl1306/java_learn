@@ -12,14 +12,14 @@ import java.util.List;
 public class ContactDeletionTests extends TestBase {
     @BeforeMethod
     public void ensurePreconditions(){
-        app.getNavigationHelper().goToGroupPage();
-        if (!app.getGroupHelper().isThereAgroup()) {
-            app.getGroupHelper().creatGroup(new GroupData(null, null, "test1"));
+        app.goTo().groupPage();
+        if (app.group().list().size() ==0) {
+            app.group().create(new GroupData(null, null, "test1"));
         }
-        app.getNavigationHelper().goToHomePage();
-        if(!app.getContactHelper().isThereAContact()){
-            app.getContactHelper().initContactCreation();
-            app.getContactHelper().fillContactForm(new ContactData("John", "Doe",
+        app.goTo().homePage();
+        if(app.contact().list().size()==0){
+            app.contact().initContactCreation();
+            app.contact().fillContactForm(new ContactData("John", "Doe",
                     "3 Duncroft ,Silver Spring MD", "2223334556",
                     "qwerty1@gmail.com"),true);
         }
@@ -28,10 +28,10 @@ public class ContactDeletionTests extends TestBase {
 
     @Test
     public void testContactDeletion() throws Exception {
-        List<ContactData> before = app.getContactHelper().getContactList();
+        List<ContactData> before = app.contact().list();
         int index = before.size() - 1;
-        app.getContactHelper().deletionContact(index);
-        List<ContactData> after = app.getContactHelper().getContactList();
+        app.contact().delete(index);
+        List<ContactData> after = app.contact().list();
         Assert.assertEquals(before.size() - 1, after.size());
         before.remove(index);
         Assert.assertEquals(before, after);
