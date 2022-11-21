@@ -6,15 +6,14 @@ import org.testng.annotations.Test;
 import ru.stqa.learn.addressbook.model.ContactData;
 import ru.stqa.learn.addressbook.model.GroupData;
 
-import java.util.Comparator;
-import java.util.List;
+import java.util.Set;
 
 public class ContactCreationTests extends TestBase {
 
     @BeforeMethod
            public void ensurePrecondition(){
         app.goTo().groupPage();
-        if (app.group().list().size() ==0) {
+        if (app.group().all().size() ==0) {
             app.group().create(new GroupData().withName("test1"));
         }
     }
@@ -23,19 +22,17 @@ public class ContactCreationTests extends TestBase {
     public void testContactCreation() throws Exception {
 
         app.goTo().homePage();
-        List<ContactData> before = app.contact().list();
-        ContactData contact = new ContactData
-                ("John", "Doe", "333 Spring St", "1112223344",
-                        "qwerty@gmail.com");
+        Set<ContactData> before = app.contact().all();
+        ContactData contact = new ContactData().withFirstname("John").withLastname("Doe")
+                .withAddress("333 Spring St").withHomephone("1112223344").withEmail("qwerty@gmail.com");
         app.contact().initContactCreation();
         app.contact().createContact(contact);
-
-        List<ContactData> after = app.contact().list();
+        Set<ContactData> after = app.contact().all();
         Assert.assertEquals(before.size(), after.size() - 1);
+
+        contact.withId(after.stream().mapToInt((g)->g.getId()).max().getAsInt());
+
         before.add(contact);
-        Comparator<? super ContactData> byId = (g1,g2)-> Integer.compare(g1.getId(), g2.getId());
-        before.sort(byId);
-        after.sort(byId);
         Assert.assertEquals(before,after);
 
     }

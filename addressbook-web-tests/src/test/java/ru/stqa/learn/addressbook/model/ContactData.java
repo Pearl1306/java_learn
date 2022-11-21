@@ -3,38 +3,40 @@ package ru.stqa.learn.addressbook.model;
 import java.util.Objects;
 
 public class ContactData {
-    private int id;
-    private final String firstname;
-    private final String lastname;
-    private final String address;
-    private final String homephone;
-    private final String email;
+    private int id = Integer.MAX_VALUE;;
+    private  String firstname;
+    private  String lastname;
+    private  String address;
+    private  String homephone;
+    private  String email;
 
-
-
-    public ContactData(int id,String firstname, String lastname,
-                       String address, String homephone, String email) {
+    public ContactData withId(int id) {
         this.id = id;
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.address = address;
-        this.homephone = homephone;
-        this.email = email;
-
+        return this;
     }
-    public ContactData(String firstname, String lastname,
-                       String address, String homephone, String email) {
-        this.id = Integer.MAX_VALUE;
+    public ContactData withFirstname(String firstname) {
         this.firstname = firstname;
-        this.lastname = lastname;
-        this.address = address;
-        this.homephone = homephone;
-        this.email = email;
-
+        return this;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public ContactData withLastname(String lastname) {
+        this.lastname = lastname;
+        return this;
+    }
+
+    public ContactData withAddress(String address) {
+        this.address = address;
+        return this;
+    }
+
+    public ContactData withHomephone(String homephone) {
+        this.homephone = homephone;
+        return this;
+    }
+
+    public ContactData withEmail(String email) {
+        this.email = email;
+        return this;
     }
 
     public int getId() {
@@ -80,13 +82,15 @@ public class ContactData {
 
         ContactData that = (ContactData) o;
 
+        if (id != that.id) return false;
         if (!Objects.equals(firstname, that.firstname)) return false;
         return Objects.equals(lastname, that.lastname);
     }
 
     @Override
     public int hashCode() {
-        int result = firstname != null ? firstname.hashCode() : 0;
+        int result = id;
+        result = 31 * result + (firstname != null ? firstname.hashCode() : 0);
         result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
         return result;
     }
