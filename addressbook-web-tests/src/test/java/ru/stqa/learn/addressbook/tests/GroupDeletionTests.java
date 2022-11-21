@@ -1,11 +1,13 @@
 package ru.stqa.learn.addressbook.tests;
 
-import org.testng.Assert;
-import org.testng.annotations.*;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 import ru.stqa.learn.addressbook.model.GroupData;
+import ru.stqa.learn.addressbook.model.Groups;
 
-import java.util.List;
-import java.util.Set;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.testng.Assert.assertEquals;
 
 public class GroupDeletionTests extends TestBase {
 
@@ -19,14 +21,14 @@ public class GroupDeletionTests extends TestBase {
 
   @Test
   public void testGroupDeletion() {
-    Set<GroupData> before = app.group().all();
+    Groups before = app.group().all();
     GroupData deletedGroup = before.iterator().next();
     app.group().delete(deletedGroup);
-    Set<GroupData> after = app.group().all();
-    Assert.assertEquals(before.size()-1,after.size());
+    Groups after = app.group().all();
+    assertEquals(before.size()-1,after.size());
 
-    before.remove(deletedGroup);
-    Assert.assertEquals(before,after);
+    assertThat(after, equalTo(before.withoutAdded(deletedGroup)));//Ctrl+space 2 times for calling static methods
+
   }
 
 }
