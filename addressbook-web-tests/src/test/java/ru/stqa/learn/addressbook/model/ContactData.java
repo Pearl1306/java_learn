@@ -3,17 +3,21 @@ package ru.stqa.learn.addressbook.model;
 import java.util.Objects;
 
 public class ContactData {
-    private int id = Integer.MAX_VALUE;;
-    private  String firstname;
-    private  String lastname;
-    private  String address;
-    private  String homephone;
-    private  String email;
+    private int id = Integer.MAX_VALUE;
+    ;
+    private String firstname;
+    private String lastname;
+    private String address;
+    private String homephone;
+    private String mobilephone;
+    private String workphone;
+    private String email;
 
     public ContactData withId(int id) {
         this.id = id;
         return this;
     }
+
     public ContactData withFirstname(String firstname) {
         this.firstname = firstname;
         return this;
@@ -26,6 +30,18 @@ public class ContactData {
 
     public ContactData withAddress(String address) {
         this.address = address;
+        return this;
+    }
+
+
+    public ContactData withMobilePhone(String mobilephone) {
+        this.mobilephone = mobilephone;
+        return this;
+    }
+
+
+    public ContactData withWorkphone(String workphone) {
+        this.workphone = workphone;
         return this;
     }
 
@@ -57,6 +73,14 @@ public class ContactData {
 
     public String getHomephone() {
         return homephone;
+    }
+
+    public String getWorkphone() {
+        return workphone;
+    }
+
+    public String getMobilephone() {
+        return mobilephone;
     }
 
     public String getEmail() {
