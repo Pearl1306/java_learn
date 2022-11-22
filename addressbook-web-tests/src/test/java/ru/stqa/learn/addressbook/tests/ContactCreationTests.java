@@ -29,7 +29,7 @@ public class ContactCreationTests extends TestBase {
         app.contact().initContactCreation();
         app.contact().createContact(contact);
         Contacts after = app.contact().all();
-        assertThat(after.size(),equalTo( before.size() + 1));
+        assertThat(after.size(),equalTo( app.contact().count()));
 
         assertThat(after, equalTo(before
                 .withAdded(contact.withId(after.stream().mapToInt((g)->g.getId()).max().getAsInt()))));

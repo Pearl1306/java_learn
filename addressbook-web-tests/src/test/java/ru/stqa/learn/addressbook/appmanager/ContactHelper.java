@@ -8,9 +8,7 @@ import org.testng.Assert;
 import ru.stqa.learn.addressbook.model.ContactData;
 import ru.stqa.learn.addressbook.model.Contacts;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 public class ContactHelper extends HelperBase {
@@ -95,7 +93,7 @@ public class ContactHelper extends HelperBase {
 
     }
 
-    public int getContactCount() {
+    public int count() {
         return wd.findElements(By.xpath("//td/input")).size();
     }
     private Contacts contactCache = null;
