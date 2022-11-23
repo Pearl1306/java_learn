@@ -29,7 +29,7 @@ public class ContactDeletionTests extends TestBase {
                         .withMobilePhone("444").withEmail("swe@"));
         }
     }
-    
+
     @Test
     public void testContactDeletion() throws Exception {
         Contacts before = app.contact().all();

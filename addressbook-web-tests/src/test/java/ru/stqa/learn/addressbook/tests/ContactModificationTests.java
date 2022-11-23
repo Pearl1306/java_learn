@@ -1,15 +1,10 @@
 package ru.stqa.learn.addressbook.tests;
 
-import org.hamcrest.CoreMatchers;
-import org.hamcrest.MatcherAssert;
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.learn.addressbook.model.ContactData;
 import ru.stqa.learn.addressbook.model.Contacts;
 import ru.stqa.learn.addressbook.model.GroupData;
-
-import java.util.Set;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -37,7 +32,7 @@ public class ContactModificationTests extends TestBase{
         ContactData contact = new ContactData().withId(modifiedContact.getId())
                 .withFirstname("John").withLastname("Doe")
                 .withAddress("333 Spring St").withHomephone("1112223344").withEmail("qwerty@gmail.com");
-        app.contact().modifyContact(modifiedContact);
+        app.contact().modify(contact);
         assertThat(before.size(),equalTo(app.contact().count()));
         Contacts after = app.contact().all();
         assertThat(after,equalTo(before.without(contact).withAdded(modifiedContact)));
