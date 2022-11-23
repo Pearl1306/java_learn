@@ -5,6 +5,9 @@ import org.testng.annotations.Test;
 import ru.stqa.learn.addressbook.model.ContactData;
 import ru.stqa.learn.addressbook.model.GroupData;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -17,10 +20,9 @@ public class ContactPhoneTests extends TestBase {
         }
         app.goTo().homePage();
         if(app.contact().all().size()==0){
-            app.contact().initContactCreation();
-            app.contact().fillContactForm(new ContactData().withFirstname("John").withLastname("Doe")
-                    .withAddress("333 Spring St").withHomephone("111").withMobilePhone("222").withWorkphone("333")
-                    .withEmail("qwerty@gmail.com"),true);
+            app.contact().createContact(new ContactData().withLastname("Lo").withFirstname("Sam")
+                    .withAddress("123 St").withHomephone("234").withMobilePhone("333")
+                    .withMobilePhone("444").withEmail("swe@"));
         }
     }
 
@@ -29,10 +31,15 @@ public class ContactPhoneTests extends TestBase {
         app.goTo().homePage();
         ContactData contact = app.contact().all().iterator().next();
         ContactData contactInfoFromEditForm = app.contact().contactInfoFromEditForm(contact);
-        assertThat(contact.getHomephone(), equalTo(contactInfoFromEditForm.getHomephone()));
-        assertThat(contact.getMobilephone(), equalTo(contactInfoFromEditForm.getMobilephone()));
-        assertThat(contact.getWorkphone(), equalTo(contactInfoFromEditForm.getWorkphone()));
+        assertThat(contact.getAllPhones(), equalTo(mergePhones(contactInfoFromEditForm)));
 
+    }
+    private String mergePhones(ContactData contact) {
+        return Arrays.asList(contact.getHomephone(),contact.getMobilephone(),contact.getWorkphone())
+                .stream().filter((s)->!s.equals("")).map(ContactPhoneTests::cleaned).collect(Collectors.joining("\n"));
+    }
 
+    public static String cleaned(String phone){
+        return phone.replaceAll("//s","").replaceAll("[-()]","");
     }
 }
