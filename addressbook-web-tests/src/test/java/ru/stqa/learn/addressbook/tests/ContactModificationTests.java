@@ -17,17 +17,16 @@ import static org.testng.Assert.assertEquals;
 
 public class ContactModificationTests extends TestBase{
     @BeforeMethod
-    public void ensurePreconditions(){
+    public void ensurePrecondition() {
         app.goTo().groupPage();
-        if (app.group().all().size() ==0) {
+        if (app.group().all().size() == 0) {
             app.group().create(new GroupData().withName("test1"));
         }
         app.goTo().homePage();
-        if(app.contact().all().size()==0){
-            app.contact().initContactCreation();
-            app.contact().fillContactForm(new ContactData().withFirstname("John").withLastname("Doe")
-                            .withAddress("333 Spring St").withHomephone("1112223344")
-                            .withEmail("qwerty@gmail.com"),true);
+        if (app.contact().all().size() == 0) {
+            app.contact().createContact(new ContactData().withLastname("Lo").withFirstname("Sam")
+                    .withAddress("123 St").withHomephone("234").withMobilePhone("333")
+                    .withMobilePhone("444").withEmail("swe@"));
         }
     }
 

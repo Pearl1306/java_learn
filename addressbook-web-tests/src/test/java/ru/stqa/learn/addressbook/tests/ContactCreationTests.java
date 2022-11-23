@@ -12,7 +12,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class ContactCreationTests extends TestBase {
 
     @BeforeMethod
-           public void ensurePrecondition(){
+    public void ensurePrecondition(){
         app.goTo().groupPage();
         if (app.group().all().size() ==0) {
             app.group().create(new GroupData().withName("test1"));
@@ -25,7 +25,8 @@ public class ContactCreationTests extends TestBase {
         app.goTo().homePage();
         Contacts before = app.contact().all();
         ContactData contact = new ContactData().withFirstname("John").withLastname("Doe")
-                .withAddress("333 Spring St").withHomephone("1112223344").withEmail("qwerty@gmail.com");
+                .withAddress("333 Spring St").withHomephone("111").withMobilePhone("222")
+                .withWorkphone("333").withEmail("qwerty@gmail.com");
         app.contact().initContactCreation();
         app.contact().createContact(contact);
         Contacts after = app.contact().all();

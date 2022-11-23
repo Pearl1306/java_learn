@@ -24,14 +24,12 @@ public class ContactDeletionTests extends TestBase {
         }
         app.goTo().homePage();
         if(app.contact().all().size()==0){
-            app.contact().initContactCreation();
-            app.contact().fillContactForm(new ContactData().withFirstname("John").withLastname("Doe")
-                    .withAddress("333 Spring St").withHomephone("1112223344").withEmail("qwerty@gmail.com")
-                   ,true);
+            app.contact().createContact(new ContactData().withLastname("Lo").withFirstname("Sam")
+                        .withAddress("123 St").withHomephone("234").withMobilePhone("333")
+                        .withMobilePhone("444").withEmail("swe@"));
         }
     }
-
-
+    
     @Test
     public void testContactDeletion() throws Exception {
         Contacts before = app.contact().all();
