@@ -1,10 +1,10 @@
 package ru.stqa.learn.addressbook.model;
 
+import java.io.File;
 import java.util.Objects;
 
 public class ContactData {
     private int id = Integer.MAX_VALUE;
-    ;
     private String firstname;
     private String lastname;
     private String address;
@@ -16,12 +16,17 @@ public class ContactData {
     private String email2;
     private String email3;
     private String allEmails;
+    private File photo;
+
+    public ContactData withPhoto(File photo) {
+        this.photo = photo;
+        return this;
+    }
 
     public ContactData withId(int id) {
         this.id = id;
         return this;
     }
-
     public ContactData withFirstname(String firstname) {
         this.firstname = firstname;
         return this;
@@ -97,8 +102,7 @@ public class ContactData {
 
     public String getMobilephone() {
         return mobilephone;
-    }
-    public String getAllPhones() {
+    }public String getAllPhones() {
         return allPhones;
     }
 
@@ -113,6 +117,9 @@ public class ContactData {
     }
     public String getAllEmails() {
         return allEmails;
+    }
+    public File getPhoto() {
+        return photo;
     }
     @Override
     public String toString() {
