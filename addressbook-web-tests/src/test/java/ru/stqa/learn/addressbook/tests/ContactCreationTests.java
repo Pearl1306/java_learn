@@ -21,12 +21,12 @@ public class ContactCreationTests extends TestBase {
         }
     }
 
-    @Test
+    @Test(enabled = false)
     public void testContactCreation() throws Exception {
 
         app.goTo().homePage();
         Contacts before = app.contact().all();
-        File photo = new File("src/test/resources/stru/png");
+        File photo = new File("src/test/resources/dog.png");
         ContactData contact = new ContactData().withFirstname("John").withLastname("Doe")
                 .withAddress("333 Spring St").withHomephone("111").withMobilePhone("222")
                 .withWorkphone("333").withEmail("qwerty@gmail.com").withPhoto(photo);
@@ -39,15 +39,15 @@ public class ContactCreationTests extends TestBase {
                 .withAdded(contact.withId(after.stream().mapToInt((g)->g.getId()).max().getAsInt()))));
 
     }
-    /*@Test
+    @Test
     public void testCurrentDir(){
         File currentDir = new File(".");
         System.out.println(currentDir.getAbsolutePath());
-        File photo = new File("src/test/resources/stru/png");
+        File photo = new File("src/test/resources/dog.png");
 
         System.out.println(photo.getAbsolutePath());
         System.out.println(photo.exists());
-    }*/
+    }
 
 
 }

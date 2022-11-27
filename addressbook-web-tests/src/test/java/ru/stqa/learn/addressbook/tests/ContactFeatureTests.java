@@ -45,7 +45,7 @@ public class ContactFeatureTests extends TestBase {
         return phone.replaceAll("//s","")
                 .replaceAll("[-()]","");
     }
-    
+
     private String mergeEmails(ContactData contact) {
         return Arrays.asList(contact.getEmail(),contact.getEmail2(),contact.getEmail3())
                 .stream().filter((s)->s  !=null && !s.equals("")).collect(Collectors.joining("\n"));
