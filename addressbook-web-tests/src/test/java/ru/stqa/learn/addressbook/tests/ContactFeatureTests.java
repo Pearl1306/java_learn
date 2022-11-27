@@ -27,41 +27,28 @@ public class ContactFeatureTests extends TestBase {
     }
 
     @Test
-    public void testContactPhones(){
+    public void testContactFeature(){
         app.goTo().homePage();
         ContactData contact = app.contact().all().iterator().next();
         ContactData contactInfoFromEditForm = app.contact().contactInfoFromEditForm(contact);
         assertThat(contact.getAllPhones(), equalTo(mergePhones(contactInfoFromEditForm)));
+        assertThat(contact.getAllEmails(), equalTo(mergeEmails(contactInfoFromEditForm)));
+        assertThat(contact.getAddress(), equalTo(contactInfoFromEditForm.getAddress()));
 
     }
     private String mergePhones(ContactData contact) {
         return Arrays.asList(contact.getHomephone(),contact.getMobilephone(),contact.getWorkphone())
-                .stream().filter((s)->!s.equals("")).map(ContactFeatureTests::cleaned)
+                .stream().filter((s)-> s !=null && !s.equals("")).map(ContactFeatureTests::cleaned)
                 .collect(Collectors.joining("\n"));
     }
     public static String cleaned(String phone){
         return phone.replaceAll("//s","")
                 .replaceAll("[-()]","");
     }
-
-    @Test
-    public void testcontactEmails(){
-        app.goTo().homePage();
-        ContactData contact = app.contact().all().iterator().next();
-        ContactData contactInfoFromEditForm = app.contact().contactInfoFromEditForm(contact);
-        assertThat(contact.getAllEmails(), equalTo(mergeEmails(contactInfoFromEditForm)));
-
-    }
+    
     private String mergeEmails(ContactData contact) {
         return Arrays.asList(contact.getEmail(),contact.getEmail2(),contact.getEmail3())
-                .stream().filter((s)->!s.equals("")).collect(Collectors.joining("\n"));
+                .stream().filter((s)->s  !=null && !s.equals("")).collect(Collectors.joining("\n"));
     }
-    @Test
-    public void testContactAddress(){
-        app.goTo().homePage();
-        ContactData contact = app.contact().all().iterator().next();
-        ContactData contactInfoFromEditForm = app.contact().contactInfoFromEditForm(contact);
-        assertThat(contact.getAddress(), equalTo(contactInfoFromEditForm.getAddress()));
 
-    }
 }
