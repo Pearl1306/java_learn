@@ -1,5 +1,7 @@
 package ru.stqa.learn.addressbook.tests;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.thoughtworks.xstream.XStream;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
@@ -19,7 +21,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactCreationTests extends TestBase {
   @DataProvider
-  public Iterator<Object[]> validContacts() throws IOException {
+  public Iterator<Object[]> validContactsFromXml() throws IOException {
     BufferedReader reader = new BufferedReader(new FileReader
           (new File("src/test/resources/contacts.xml")));
     String xml = "";
@@ -34,6 +36,20 @@ public class ContactCreationTests extends TestBase {
     List<ContactData> contacts = (List<ContactData>)xstream.fromXML(xml);
     return contacts.stream().map((g)-> new Object[]{g}).collect(Collectors.toList()).iterator();
   }
+  @DataProvider
+  public Iterator<Object[]> validContactsFromJson() throws IOException {
+    BufferedReader reader = new BufferedReader(new FileReader
+          (new File("src/test/resources/contacts.json")));
+    String json = "";
+    String line = reader.readLine();
+    while (line != null) {
+      json += line;
+      line = reader.readLine();
+    }
+    Gson gson = new Gson();
+    List<ContactData> contacts = gson.fromJson(json, new TypeToken<List<ContactData>>(){}.getType());//==List<ContactData>.class
+    return contacts.stream().map((g)-> new Object[]{g}).collect(Collectors.toList()).iterator();
+  }
 
   @BeforeMethod
   public void ensurePrecondition() {
@@ -43,7 +59,7 @@ public class ContactCreationTests extends TestBase {
     }
   }
 
-  @Test(dataProvider = "validContacts")
+  @Test(dataProvider = "validContactsFromJson")
   public void testContactCreation(ContactData contact) throws Exception {
 
     app.goTo().homePage();
