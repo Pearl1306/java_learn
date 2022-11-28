@@ -1,0 +1,57 @@
+<list>
+  <contact>
+    <firstname>Sui 0</firstname>
+    <lastname>Doe 0</lastname>
+    <address>road 0</address>
+    <homephone>123 0</homephone>
+    <mobilephone>345 0</mobilephone>
+    <workphone>678 0</workphone>
+    <email>1@ 0</email>
+    <email2>2@ 0</email2>
+    <email3>3@ 0</email3>
+  </contact>
+  <contact>
+    <firstname>Sui 1</firstname>
+    <lastname>Doe 1</lastname>
+    <address>road 1</address>
+    <homephone>123 1</homephone>
+    <mobilephone>345 1</mobilephone>
+    <workphone>678 1</workphone>
+    <email>1@ 1</email>
+    <email2>2@ 1</email2>
+    <email3>3@ 1</email3>
+  </contact>
+  <contact>
+    <firstname>Sui 2</firstname>
+    <lastname>Doe 2</lastname>
+    <address>road 2</address>
+    <homephone>123 2</homephone>
+    <mobilephone>345 2</mobilephone>
+    <workphone>678 2</workphone>
+    <email>1@ 2</email>
+    <email2>2@ 2</email2>
+    <email3>3@ 2</email3>
+  </contact>
+  <contact>
+    <firstname>Sui 3</firstname>
+    <lastname>Doe 3</lastname>
+    <address>road 3</address>
+    <homephone>123 3</homephone>
+    <mobilephone>345 3</mobilephone>
+    <workphone>678 3</workphone>
+    <email>1@ 3</email>
+    <email2>2@ 3</email2>
+    <email3>3@ 3</email3>
+  </contact>
+  <contact>
+    <firstname>Sui 4</firstname>
+    <lastname>Doe 4</lastname>
+    <address>road 4</address>
+    <homephone>123 4</homephone>
+    <mobilephone>345 4</mobilephone>
+    <workphone>678 4</workphone>
+    <email>1@ 4</email>
+    <email2>2@ 4</email2>
+    <email3>3@ 4</email3>
+  </contact>
+</list>
