@@ -29,15 +29,11 @@ public class GroupDataGenerator {
             return;
         }
         generator.run();
-
-
     }
-
     private void run() throws IOException {
         List<GroupData>groups = generateGroups(count);
         save(groups, new File (file));
     }
-
     private void save(List<GroupData> groups, File file) throws IOException {
         //System.out.println(new File(".").getAbsolutePath());
         Writer writer = new FileWriter(file);
