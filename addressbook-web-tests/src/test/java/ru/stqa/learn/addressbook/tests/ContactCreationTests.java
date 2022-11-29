@@ -64,10 +64,24 @@ public class ContactCreationTests extends TestBase {
 
     app.goTo().homePage();
     Contacts before = app.contact().all();
+    app.contact().initContactCreation();
+    app.contact().createContact(contact);
+    Contacts after = app.contact().all();
+    assertThat(after.size(), equalTo(app.contact().count()));
+
+    assertThat(after, equalTo(before
+          .withAdded(contact.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
+
+  }
+  @Test
+  public void testContactCreationWithPhoto() throws Exception {
+
+    app.goTo().homePage();
+    Contacts before = app.contact().all();
     File photo = new File("src/test/resources/dog.png");
-       /*ContactData contact = new ContactData().withFirstname("John").withLastname("Doe")
+    ContactData contact = new ContactData().withFirstname("John").withLastname("Doe")
                 .withAddress("333 Spring St").withHomephone("111").withMobilePhone("222")
-                .withWorkphone("333").withEmail("qwerty@gmail.com");//.withPhoto(photo);*/
+                .withWorkphone("333").withEmail("qwerty@gmail.com").withPhoto(photo);
     app.contact().initContactCreation();
     app.contact().createContact(contact);
     Contacts after = app.contact().all();
