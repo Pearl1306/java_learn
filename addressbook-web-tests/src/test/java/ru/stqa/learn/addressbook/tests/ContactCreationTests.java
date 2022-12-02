@@ -9,6 +9,7 @@ import org.testng.annotations.Test;
 import ru.stqa.learn.addressbook.model.ContactData;
 import ru.stqa.learn.addressbook.model.Contacts;
 import ru.stqa.learn.addressbook.model.GroupData;
+import ru.stqa.learn.addressbook.model.Groups;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -64,7 +65,6 @@ public class ContactCreationTests extends TestBase {
 
   @Test(dataProvider = "validContactsFromJson")
   public void testContactCreation(ContactData contact) throws Exception {
-
     app.goTo().homePage();
     Contacts before = app.db().contacts();
     app.contact().initContactCreation();
@@ -76,22 +76,22 @@ public class ContactCreationTests extends TestBase {
           .withAdded(contact.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
     verifyContactListInUI();
   }
-  @Test(enabled = false)
+  @Test
   public void testContactCreationWithPhoto() throws Exception {
-
+    Groups groups = app.db().groups();
+    File photo = new File("src/test/resources/dog.png");
+    ContactData newContact = new ContactData().withFirstname("John").withLastname("Doe")
+          .withAddress("333 Spring St").withHomephone("111").withMobilePhone("222")
+          .withWorkphone("333").withEmail("qwerty@gmail.com").withPhoto(photo).inGroup(groups.iterator().next());
     app.goTo().homePage();
     Contacts before = app.db().contacts();
-    File photo = new File("src/test/resources/dog.png");
-    ContactData contact = new ContactData().withFirstname("John").withLastname("Doe")
-                .withAddress("333 Spring St").withHomephone("111").withMobilePhone("222")
-                .withWorkphone("333").withEmail("qwerty@gmail.com").withPhoto(photo);
     app.contact().initContactCreation();
-    app.contact().createContact(contact);
+    app.contact().createContact(newContact);
     Contacts after = app.db().contacts();
     assertThat(after.size(), equalTo(app.contact().count()));
 
     assertThat(after, equalTo(before
-          .withAdded(contact.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
+          .withAdded(newContact.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
     verifyContactListInUI();
 
   }
