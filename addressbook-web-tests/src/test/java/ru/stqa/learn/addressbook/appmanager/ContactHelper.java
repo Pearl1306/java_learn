@@ -33,6 +33,8 @@ public class ContactHelper extends HelperBase {
         type(By.name("mobile"), contactData.getMobilephone());
         type(By.name("work"), contactData.getWorkphone());
         type(By.name("email"), contactData.getEmail());
+        type(By.name("email2"), contactData.getEmail2());
+        type(By.name("email3"), contactData.getEmail3());
         if(contactData.getPhoto() != null){
             attach(By.name("photo"), contactData.getPhoto());
         }
@@ -49,7 +51,7 @@ public class ContactHelper extends HelperBase {
 
     public void acceptDeletionContact() {
         alertAccept();
-        wd.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+        wd.manage().timeouts().implicitlyWait(6, TimeUnit.SECONDS);
     }
     public void deleteContact() {
 
