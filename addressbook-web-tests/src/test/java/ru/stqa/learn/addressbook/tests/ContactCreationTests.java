@@ -74,7 +74,7 @@ public class ContactCreationTests extends TestBase {
 
     assertThat(after, equalTo(before
           .withAdded(contact.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
-
+    verifyContactListInUI();
   }
   @Test(enabled = false)
   public void testContactCreationWithPhoto() throws Exception {
@@ -92,6 +92,7 @@ public class ContactCreationTests extends TestBase {
 
     assertThat(after, equalTo(before
           .withAdded(contact.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
+    verifyContactListInUI();
 
   }
 
