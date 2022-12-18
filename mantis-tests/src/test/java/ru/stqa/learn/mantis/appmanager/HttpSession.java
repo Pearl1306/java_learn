@@ -50,7 +50,5 @@ public class HttpSession {
     CloseableHttpResponse response = httpclient.execute(get);
     String body = getTextFrom(response);
     return body.contains(String.format("<span id=\"logged-in-user\">%s</span>", username));
-    //return body.contains(String.format("<span class=\"italic\">%s</span>", username));
-    //<span id="logged-in-user">administrator</span>
   }
 }

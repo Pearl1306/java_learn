@@ -1,5 +1,6 @@
 package ru.stqa.learn.mantis.appmanager;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -19,6 +20,7 @@ public class ApplicationManager {
     private RegistrationHelper registrationHelper;
     private FtpHelper ftp;
     private MailHelper mailHelper;
+    private ChangePasswordHelper changeHelper;
 
     public ApplicationManager(String browser){
         this.browser = browser;
@@ -75,5 +77,11 @@ public class ApplicationManager {
             mailHelper = new MailHelper(this);
         }
         return mailHelper;
+    }
+    public ChangePasswordHelper changeHelper() {
+        if(changeHelper==null){
+            changeHelper = new ChangePasswordHelper(this);
+        }
+        return changeHelper;
     }
 }
