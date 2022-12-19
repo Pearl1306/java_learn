@@ -19,12 +19,14 @@ public class ChangePasswordHelper extends HelperBase{
     click(By.xpath("//a[contains(text(),'Manage Users')]"));
   }
   public void selectUser(){
-   // user = wd.findElement(By.xpath("//tr[2]/td/")).getText();
-    //System.out.println(wd.findElement(By.xpath("//tr[2]/td/")).getText());
-   // click(By.xpath("//tr[2]/td/a"));
-    click(By.xpath("//a[contains(text(),'user1671339351530')]"));
+    click(By.xpath("//tr[2]/td/a"));
   }
   public void resetPassword(){
     click(By.cssSelector("input[value='Reset Password']"));
+  }
+
+  public String getUserName(){
+    String user = wd.findElement(By.name("username")).getAttribute("value");
+    return user;
   }
 }

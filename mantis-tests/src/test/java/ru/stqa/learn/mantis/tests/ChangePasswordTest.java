@@ -4,8 +4,6 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.lanwen.verbalregex.VerbalExpression;
-import ru.stqa.learn.mantis.appmanager.ApplicationManager;
-import ru.stqa.learn.mantis.appmanager.HelperBase;
 import ru.stqa.learn.mantis.model.MailMessage;
 
 import java.io.IOException;
@@ -23,13 +21,13 @@ public class ChangePasswordTest extends TestBase{
 
   @Test
   public void testChangePassword() throws IOException {
-    String user = String.format("user%s", "1671339351530");
     String password = "password1";
-    String email = String.format("%s@localhost.localdomain", user);
     app.changeHelper().loginAsAdmin();
     app.changeHelper().goToUserPage();
     app.changeHelper().goToMenageUserPage();
     app.changeHelper().selectUser();
+    String user = app.changeHelper().getUserName();
+    String email = String.format("%s@localhost.localdomain", user);
     app.changeHelper().resetPassword();
     List<MailMessage> mailMessages = app.mail().waitForMail(1, 10000);
     String confirmationLink = findConfirmationLink(mailMessages, email);
