@@ -36,3 +36,4 @@ sandbox/out/production/classes/ru/stqa/learn/sandbox/MyFirstProgram.class
 sandbox/out/test/classes/ru/stqa/learn/sandbox/PointTests.class
 sandbox/out/test/classes/ru/stqa/learn/sandbox/SquareTests.class
 *.log
+.idea/workspace.xml
