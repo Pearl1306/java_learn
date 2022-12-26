@@ -63,7 +63,7 @@ public class ContactHelper extends HelperBase {
         //wd.findElement(By.cssSelector("div.msgbox"));
     }
 
-    private void selectContactById(int id) {
+    public void selectContactById(int id) {
         wd.findElement(By.cssSelector("input[value='" + id+ "']")).click();
     }
 
@@ -153,5 +153,11 @@ public class ContactHelper extends HelperBase {
                 .withHomephone(home).withMobilePhone(mobile).withWorkphone(work)
                 .withEmail(email).withEmail2(email2).withEmail3(email3);
 
+    }
+
+
+    public void addContactToGroup(String name) {
+        new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(name);
+        click(By.cssSelector("input[name='add']"));
     }
 }
