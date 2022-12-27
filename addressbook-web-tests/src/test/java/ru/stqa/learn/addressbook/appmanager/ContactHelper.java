@@ -7,9 +7,12 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.learn.addressbook.model.ContactData;
 import ru.stqa.learn.addressbook.model.Contacts;
+import ru.stqa.learn.addressbook.model.GroupData;
 
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
+
 
 public class ContactHelper extends HelperBase {
 
@@ -155,9 +158,25 @@ public class ContactHelper extends HelperBase {
 
     }
 
-
     public void addContactToGroup(String name) {
         new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(name);
         click(By.cssSelector("input[name='add']"));
+    }
+
+    public void selectGroup(String name){
+        new Select(wd.findElement(By.name("group"))).selectByVisibleText(name);
+    }
+
+    public ContactData contactInGroup(Contacts contacts) {
+        for (ContactData contact : contacts) {
+            Set<GroupData> contactInGroup = contact.getGroups();
+            if (contact.getGroups().size() > 0) {
+                return contact;
+            }
+        }
+        return null;
+    }
+    public void removeContactFromGroup() {
+        click(By.cssSelector("input[name='remove']"));
     }
 }

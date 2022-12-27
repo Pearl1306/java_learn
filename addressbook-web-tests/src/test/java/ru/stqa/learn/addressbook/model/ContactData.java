@@ -70,41 +70,23 @@ public class ContactData {
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
-
     ContactData that = (ContactData) o;
-
-    if (id != that.id) return false;
-    if (!Objects.equals(firstname, that.firstname)) return false;
-    if (!Objects.equals(lastname, that.lastname)) return false;
-    return Objects.equals(address, that.address);
+    return id == that.id && Objects.equals(firstname, that.firstname) && Objects.equals(lastname, that.lastname) && Objects.equals(groups, that.groups);
   }
 
   @Override
   public int hashCode() {
-    int result = id;
-    result = 31 * result + (firstname != null ? firstname.hashCode() : 0);
-    result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
-    result = 31 * result + (address != null ? address.hashCode() : 0);
-    return result;
+    return Objects.hash(id, firstname, lastname, groups);
   }
 
   @Override
   public String toString() {
     return "ContactData{" +
-          "id=" + id +
-          ", firstname='" + firstname + '\'' +
-          ", lastname='" + lastname + '\'' +
-          ", address='" + address + '\'' +
-          ", homephone='" + homephone + '\'' +
-          ", mobilephone='" + mobilephone + '\'' +
-          ", workphone='" + workphone + '\'' +
-          ", allPhones='" + allPhones + '\'' +
-          ", email='" + email + '\'' +
-          ", email2='" + email2 + '\'' +
-          ", email3='" + email3 + '\'' +
-          ", allEmails='" + allEmails + '\'' +
-          ", photo='" + photo + '\'' +
-          '}';
+            "id=" + id +
+            ", firstname='" + firstname + '\'' +
+            ", lastname='" + lastname + '\'' +
+            ", groups=" + groups +
+            '}';
   }
 
   public ContactData withPhoto(File photo) {
