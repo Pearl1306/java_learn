@@ -44,7 +44,7 @@ public class ContactAddGroupTests extends TestBase{
     public ContactData contactNotInAllGroup(Contacts contacts){
         for(ContactData contact : contacts){
             Set<GroupData> contactInGroup = contact.getGroups();
-           if(contactInGroup.size() < app.group().all().size() ){
+           if(contactInGroup.size() < app.db().groups().size() ){
                 return contact;
             }
         }
