@@ -6,6 +6,9 @@ repositories{
 
 dependencies{
     implementation 'org.testng:testng:7.6.1'
+    implementation "jakarta.xml.bind:jakarta.xml.bind-api:4.0.0"
+    implementation "com.sun.xml.bind:jaxb-impl:4.0.1"
+    implementation 'jakarta.xml.ws:jakarta.xml.ws-api:4.0.0'
 
 }
 buildscript{
@@ -23,7 +26,7 @@ apply plugin: 'no.nils.wsdl2java'
 wsdl2java {
     wsdlDir = file("src/main/resources") // define to support incremental build
     wsdlsToGenerate = [   //  2d-array of wsdls and cxf-parameters
-                          ['src/main/resources/geoipservice.wsdl'],
+                          ["$projectDir/src/main/resources/geoipservice.wsdl"],
     ]
 
 }
