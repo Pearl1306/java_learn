@@ -33,18 +33,19 @@ public class ContactAddGroupTests extends TestBase{
     public void testContactAddGroup(){
         Contacts contacts = app.db().contacts();
         ContactData selectedContact = contactNotInAllGroup(contacts);
-        ContactData before = selectedContact;
+        int before = selectedContact.getGroups().size();
         app.contact().selectContactById(selectedContact.getId());
-        app.contact().addContactToGroup(groupNotInContact().getName());
         GroupData group = groupNotInContact();
-        ContactData after = selectedContact.inGroup(groupNotInContact());
-        assertThat(after, equalTo(before));
+        app.contact().addContactToGroup(group.getName());
+        int after = selectedContact.inGroup(group).getGroups().size();
+        assertThat(after, equalTo(before+1));
 
     }
     public ContactData contactNotInAllGroup(Contacts contacts){
         for(ContactData contact : contacts){
             Set<GroupData> contactInGroup = contact.getGroups();
-           if(contactInGroup.size() < app.db().groups().size() ){
+            Groups allGroup=app.db().groups();
+           if(contactInGroup.size() < allGroup.size() ){
                 return contact;
             }
         }
