@@ -1,6 +1,5 @@
 package ru.stqa.learn.addressbook.tests;
 
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.learn.addressbook.model.ContactData;
@@ -37,10 +36,17 @@ public class ContactAddGroupTests extends TestBase{
         app.contact().selectContactById(selectedContact.getId());
         GroupData group = groupNotInContact();
         app.contact().addContactToGroup(group.getName());
-        int after = selectedContact.inGroup(group).getGroups().size();
+        Contacts allContacts = app.db().contacts();
+        ContactData selectedAfterAdding = findContact(allContacts, selectedContact.getId());
+        int after = selectedAfterAdding.getGroups().size();
         assertThat(after, equalTo(before+1));
 
     }
+
+    private ContactData findContact(Contacts contacts, int id) {
+        return contacts.stream().filter((c)-> c.getId() == id).findFirst().get();
+    }
+
     public ContactData contactNotInAllGroup(Contacts contacts){
         for(ContactData contact : contacts){
             Set<GroupData> contactInGroup = contact.getGroups();
