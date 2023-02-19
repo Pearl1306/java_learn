@@ -1,4 +1,4 @@
-package ru.stqa.learn.rest;
+package ru.stqa.learn.rest.model;
 
 import java.util.Objects;
 
@@ -7,6 +7,7 @@ public class Issue {
     private int id;
     private String subject;
     private String description;
+    private String status;
 
     public int getId() {
         return id;
@@ -29,6 +30,19 @@ public class Issue {
     public String getDescription() {
         return description;
     }
+    public Issue withDescription(String description) {
+        this.description = description;
+        return this;
+    }
+    public String getStatus() {
+        return status;
+    }
+
+    public Issue withStatus(String status) {
+        this.status = status;
+        return this;
+    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -43,8 +57,5 @@ public class Issue {
         return Objects.hash(id, subject, description);
     }
 
-    public Issue withDescription(String description) {
-        this.description = description;
-        return this;
-    }
+
 }
